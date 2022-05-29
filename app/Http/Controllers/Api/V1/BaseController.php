@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller as Controller;
 
 class BaseController extends Controller
