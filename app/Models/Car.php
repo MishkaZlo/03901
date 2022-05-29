@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -9,7 +10,8 @@ class Car extends Model
 {
     use HasFactory;
 
-    public function drivers() {
+    public function drivers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
         return $this->belongsToMany(Driver::class)
             ->withPivot(['start_time', 'end_time'])
             ->orderBy('start_time', 'desc');

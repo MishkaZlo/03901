@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Repositories;
 
@@ -9,7 +10,12 @@ use App\Models\Car;
 
 class CarRepository implements CarRepositoryInterface
 {
-    public function getCars(CarCriteria $criteria)
+    /**
+     *
+     * @param CarCriteria $criteria
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     */
+    public function getCars(CarCriteria $criteria): \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         $query = Car::with('drivers');
 
@@ -19,11 +25,11 @@ class CarRepository implements CarRepositoryInterface
             orderBy('car_driver.start_time', $criteria->getSortMode());
         }
 
-        if ($criteria->isSortByCarMark()){
+        if ($criteria->isSortByCarMark()) {
             $query->orderBy('mark', $criteria->getSortMode());
         }
 
-        if ($criteria->isSortByCarModel()){
+        if ($criteria->isSortByCarModel()) {
             $query->orderBy('model', $criteria->getSortMode());
         }
 
